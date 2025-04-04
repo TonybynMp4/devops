@@ -1,30 +1,52 @@
-const mysql = require('mysql2');
-require('dotenv').config();
-
-function createDatabasePool() {
-    try {
-        const db = mysql.createPool({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
-            port: process.env.DB_PORT,
-            waitForConnections: true,
-            connectionLimit: 50,
-            queueLimit: 1000,
-            namedPlaceholders: true
-        });
-
-        return db;
-    } catch (err) {
-        console.error('Error connecting to the database: ', err);
-    }
+const data = {
+	cars: [
+		{
+			id: 1,
+			numberPlate: 'ABC123',
+			make: 'Toyota',
+			model:'Corolla',
+			year: 2021,
+			color: 'Blue',
+			rentBegin: null,
+			rentEnd: null,
+			rentPrice: 12
+		},
+		{
+			id: 2,
+			numberPlate: 'XYZ789',
+			make: 'Honda',
+			model: 'Civic',
+			year: 2020,
+			color: 'Red',
+			rentBegin: null,
+			rentEnd: null,
+			rentPrice: 15
+		},
+		{
+			id: 3,
+			numberPlate: 'LMN456',
+			make: 'Ford',
+			model: 'Focus',
+			year: 2019,
+			color: 'Black',
+			rentBegin: null,
+			rentEnd: null,
+			rentPrice: 10
+		},
+		{
+			id: 4,
+			numberPlate: 'DEF321',
+			make: 'Chevrolet',
+			model: 'Malibu',
+			year: 2022,
+			color: 'White',
+			rentBegin: null,
+			rentEnd: null,
+			rentPrice: 18
+		}
+	]
 }
 
-const db = createDatabasePool();
-
-if (!db) {
-    process.exit(1);
+module.exports = {
+	cars: data.cars
 }
-
-module.exports = db;

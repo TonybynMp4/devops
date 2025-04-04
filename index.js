@@ -1,7 +1,7 @@
 const app = require('./app');
 app
 .set('port', process.env.PORT ?? 3000)
-.set('host', process.env.HOST);
+.set('host', process.env.HOST ?? 'localhost')
 
 const port = app.get('port');
 app.listen(port, () => {
