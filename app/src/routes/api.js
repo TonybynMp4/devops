@@ -34,10 +34,8 @@ router.put('/cars/:numberPlate', async (req, res) => {
         car.rentEnd = rentEnd;
         res.status(200).json({ car });
     } catch (err) {
-		zbduizbudbuizbf
         res.status(500).json({ error: err });
     }
 })
 
 
-module.exports = router;
