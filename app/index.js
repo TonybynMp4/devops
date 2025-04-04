@@ -9,9 +9,8 @@ app
 .set('port', process.env.PORT ?? 4000)
 .set('host', process.env.HOST ?? 'localhost');
 
+app.use('/', express.static('front'));
 app.use("/api", require("./src/routes/api.js"));
-
-
 
 const port = app.get('port');
 app.listen(port, () => {

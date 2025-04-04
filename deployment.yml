@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: rentalservice
-          image: tonybynmp4/rentalservice:1
+          image: tonybynmp4/rentalservice:2
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
@@ -40,7 +40,7 @@ spec:
   ports:
     - port: 80
       protocol: TCP
-      targetPort: '4000'
+      targetPort: 4000
       name: http
   selector:
     app: rentalservice
