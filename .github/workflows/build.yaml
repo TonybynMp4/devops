@@ -14,9 +14,9 @@ jobs:
           node-version: '23'
       - name: Install dependencies
         run: npm install
-        working-directory: rent
+        working-directory: app
       - name: Build Docker image
-        working-directory: rent
+        working-directory: app
         run: |
           export SHELL=/bin/bash
           docker build -t rent .
