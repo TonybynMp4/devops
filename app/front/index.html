@@ -54,7 +54,7 @@
 	</main>
 </body>
 <script>
-	const baseURL = 'http://localhost:31380/rentalservice';
+	let baseURL = 'http://localhost:31380/rentalservice';
 	async function fetchCars() {
 		const data = await fetch(baseURL+'/api/cars')
 			.then(response => response.json())
@@ -76,6 +76,13 @@
 	}
 
 	(async () => {
+		try {
+			await fetch(baseURL+'/api/cars');
+		} catch (error) {
+			console.log('switching to localhost:4000');
+			baseURL = 'http://localhost:4000';
+		}
+
 		const carList = document.getElementById('carList');
 		const carSelect = document.getElementById('carId');
 		const resetCarId = document.getElementById('resetCarId');
