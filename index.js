@@ -1,7 +1,17 @@
-const app = require('./app');
+const express = require('express');
+const dotenv = require('dotenv');
+const app = express();
+dotenv.config();
+
 app
+.use(express.json({limit: '50mb'}))
+.use(express.urlencoded({ extended: true }))
 .set('port', process.env.PORT ?? 3000)
-.set('host', process.env.HOST ?? 'localhost')
+.set('host', process.env.HOST ?? 'localhost');
+
+app.use("/api", require("./src/routes/api.js"));
+
+
 
 const port = app.get('port');
 app.listen(port, () => {
