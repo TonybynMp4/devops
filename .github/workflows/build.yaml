@@ -7,18 +7,13 @@ jobs:
     name: build
     steps:
       - uses: actions/checkout@v2
-      - name: Set up node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      - name: Build and test
-        working-directory: rent
-        run: |
-          export SHELL=/bin/bash
-          npm install
-          npm run build
-      - name: Docker images
-        working-directory: /
+          node-version: '23'
+      - name: Install dependencies
+        run: npm install
+      - name: Build Docker image
         run: |
           export SHELL=/bin/bash
           docker build -t rent .
