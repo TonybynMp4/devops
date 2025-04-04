@@ -1,0 +1,25 @@
+name: CI
+on:
+  - pull_request
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Build and test
+        working-directory: rent
+        run: |
+          export SHELL=/bin/bash
+          npm install
+          npm run build
+      - name: Docker images
+        working-directory: /
+        run: |
+          export SHELL=/bin/bash
+          docker build -t rent .
+          docker images

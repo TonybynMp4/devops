@@ -6,9 +6,9 @@ const router = require('express').Router();
 router.get('/cars', async (req, res) => {
     try {
         const cars = await Car.getAll({ withMedia: true, withComments: true, withLikes: true });
-        res.status(200).json(cars);
+        res.status(200).json({cars});
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err });
     }
 });
 
@@ -17,11 +17,11 @@ router.get('/cars/:numberPlate', async (req, res) => {
     try {
         const car = await Car.getByPlate(numberPlate);
         if (car)
-            res.status(200).json(car);
+            res.status(200).json({car});
         else
             res.status(404).json({ message: 'Car not found' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err });
     }
 });
 
@@ -34,9 +34,9 @@ router.put('/cars/:numberPlate', async (req, res) => {
             return res.status(404).json({ message: 'Car not found' });
         }
         const updatedCar = await Car.update(numberPlate, { rentBegin, rentEnd });
-        res.status(200).json(updatedCar);
+        res.status(200).json({ updatedCar });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err });
     }
 })
 
