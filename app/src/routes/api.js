@@ -38,5 +38,4 @@ router.put('/cars/:numberPlate', async (req, res) => {
     }
 })
 
-
 module.exports = router;
